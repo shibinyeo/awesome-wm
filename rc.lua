@@ -13,8 +13,8 @@ local beautiful = require("beautiful")
 ---  ┃ ┣┫┣ ┃┃┃┣ 
 ---  ┻ ┛┗┗┛┛ ┗┗┛
 
--- local theme_dir = gears.filesystem.get_configuration_dir() .. "theme/"
--- beautiful.init(theme_dir .. "theme.lua")
+local theme_dir = gears.filesystem.get_configuration_dir() .. "theme/"
+beautiful.init(theme_dir .. "theme.lua")
 
 --- ┏┓┏┓┳┓┏┓┳┏┓┳┳┳┓┏┓┏┳┓┳┏┓┳┓┏┓
 --- ┃ ┃┃┃┃┣ ┃┃┓┃┃┣┫┣┫ ┃ ┃┃┃┃┃┗┓
@@ -80,30 +80,30 @@ end)
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+-- beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
 -- Default modkey.
 modkey = "Mod4"
 -- }}}
 
 -- {{{ Wallpaper
-screen.connect_signal("request::wallpaper", function(s)
-    awful.wallpaper {
-        screen = s,
-        widget = {
-            {
-                image     = beautiful.wallpaper,
-                upscale   = true,
-                downscale = true,
-                widget    = wibox.widget.imagebox,
-            },
-            valign = "center",
-            halign = "center",
-            tiled  = false,
-            widget = wibox.container.tile,
-        }
-    }
-end)
+-- screen.connect_signal("request::wallpaper", function(s)
+--     awful.wallpaper {
+--         screen = s,
+--         widget = {
+--             {
+--                 image     = beautiful.wallpaper,
+--                 upscale   = true,
+--                 downscale = true,
+--                 widget    = wibox.widget.imagebox,
+--             },
+--             valign = "center",
+--             halign = "center",
+--             tiled  = false,
+--             widget = wibox.container.tile,
+--         }
+--     }
+-- end)
 -- }}}
 
 -- {{{ Wibar
