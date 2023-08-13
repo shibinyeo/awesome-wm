@@ -69,6 +69,11 @@ awful.keyboard.append_global_keybindings({
     awful.key(
         { mod }, "w",
 	function()
+            local screen = awful.screen.focused()
+            local tag = screen.tags[1]
+            if tag then
+                tag:view_only()
+            end
             awful.spawn(apps.default.web_browser)
         end,
 	{ description = "open web browser", group = "App" }
@@ -76,8 +81,13 @@ awful.keyboard.append_global_keybindings({
 
     awful.key(
         { mod }, "s",
-	function()
-            awful.spawn("spotify")
+        function()
+            local screen = awful.screen.focus(1)
+            local tag = screen.tags[6]
+            if tag then
+                tag:view_only()
+            end
+            awful.spawn("env LD_PRELOAD=/usr/lib/spotify-adblock.so spotify --disable-gpu --no-zygote %U")
         end,
 	{ description = "open spotify", group = "App" }
     ),
@@ -85,21 +95,44 @@ awful.keyboard.append_global_keybindings({
     awful.key(
         { mod }, "t",
 	function()
+            local screen = awful.screen.focus(1)
+            local tag = screen.tags[5]
+            if tag then
+                tag:view_only()
+            end
             awful.spawn("telegram-desktop")
         end,
 	{ description = "open telegram", group = "App" }
     ),
 
     awful.key(
+        { mod }, "a",
+	function()
+            local screen = awful.screen.focus(1)
+            local tag = screen.tags[5]
+            if tag then
+                tag:view_only()
+            end
+            awful.spawn.with_shell("if ! xdo activate -N whatsapp-nativefier-d40211; then whatsapp-nativefier --disable-gpu; fi")
+        end,
+	{ description = "open whatsapp", group = "App" }
+    ),
+
+    awful.key(
         { mod }, "o",
 	function()
+            local screen = awful.screen.focus(1)
+            local tag = screen.tags[2]
+            if tag then
+                tag:view_only()
+            end
             awful.spawn("obsidian")
         end,
 	{ description = "open obsidian", group = "App" }
     ),
 
     awful.key(
-        { mod }, "a",
+        { mod }, "k",
         function()
             awful.spawn("anki")
         end,
@@ -162,6 +195,13 @@ awful.keyboard.append_global_keybindings({
     --- ~~~~~~~~~~~~~~~~
 
     awful.key(
+        { mod }, "XF86AudioRaiseVolume",
+        function()
+	    awful.spawn.with_shell("if [ $(pactl info | grep 'Default Sink' | cut -d ' ' -f3) = 'alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__hw_sofhdadsp__sink' ]; then pactl set-default-sink alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__hw_sofhdadsp_3__sink; else pactl set-default-sink alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__hw_sofhdadsp__sink; fi")
+        end
+    ),
+
+    awful.key(
         {}, "XF86AudioRaiseVolume",
         function()
             awful.spawn("pamixer --allow-boost --set-limit 150 -i 5 -u", false)
@@ -204,6 +244,13 @@ awful.keyboard.append_global_keybindings({
         end
     ),
 
+    awful.key(
+        { mod, ctrl, alt }, "l",
+        function()
+            awful.spawn("systemctl suspend")
+        end
+    ),
+    
 })
 
 

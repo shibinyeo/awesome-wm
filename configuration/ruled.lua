@@ -94,8 +94,8 @@ ruled.client.connect_signal("request::rules", function()
     	},
     })
 
-    --- Clients to open in tag 1
-    --- ~~~~~~~~~~~~~~~~~~~~~~~~
+    --- Clients to open in Screen 2, Tag 1
+    --- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     
     ruled.client.append_rule({
         rule_any = {
@@ -104,12 +104,12 @@ ruled.client.connect_signal("request::rules", function()
             },
         },
         properties = {
-            tag = "1",
+            tag = screen[2].tags[1],
         },
     })
 
-    --- Clients to open in Tag 2
-    --- ~~~~~~~~~~~~~~~~~~~~~~~~
+    --- Clients to open in Screen 1, Tag 2
+    --- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     
     ruled.client.append_rule({
         rule_any = {
@@ -118,7 +118,7 @@ ruled.client.connect_signal("request::rules", function()
             },
         },
         properties = {
-            tag = "2",
+            tag = screen[1].tags[2],
         },
     })
 
@@ -136,27 +136,28 @@ ruled.client.connect_signal("request::rules", function()
         },
     })
 
-    --- Clients to open in Tag 5
+    --- Clients to open in Screen 1, Tag 5
     --- ~~~~~~~~~~~~~~~~~~~~~~~~
     
     ruled.client.append_rule({
         rule_any = {
             class = {
                 "TelegramDesktop",
+                "whatsapp-nativefier-d40211",
             },
         },
         properties = {
-            tag = "5",
+            tag = screen[1].tags[5],
         },
     })
 
-    --- Clients to open in Tag 6
+    --- Clients to open in Screen 1, Tag 6
     --- ~~~~~~~~~~~~~~~~~~~~~~~~
     
     ruled.client.append_rule({
         rule_any = {
             class = {
-                "org.gnome.clocks",
+                -- "org.gnome.clocks",
     	        "Spotify",
             },
         },
