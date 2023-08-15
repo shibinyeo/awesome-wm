@@ -7,6 +7,7 @@ return {
                 text_editor = "nvim",
                 web_browser = "microsoft-edge-beta",
                 file_manager = "ranger",
+                -- power_manager = "xfce4-power-manager",
                 -- app_launcher = "rofi -no-lazy-grab -show drun -modi drun -theme " .. config_dir .. "configuration/rofi.rasi",
         },
 }

@@ -36,7 +36,7 @@ return function(s)
     --- ~~~~~~~
 
     s.clock = require("ui.panels.top-panel.clock")(s)
-	-- s.battery = require("ui.panels.top-panel.battery")()
+	s.battery = require("ui.panels.top-panel.battery")()
 	-- s.network = require("ui.panels.top-panel.network")()
 
     --- ANIMATED TAG LIST
@@ -200,7 +200,7 @@ return function(s)
 					tag_list(s),
                     {
                         -- system_tray(),
-						-- s.battery,
+						s.battery,
 						-- s.network,
 						-- notif_panel(),
 						layoutbox(),
