@@ -74,7 +74,7 @@ awful.keyboard.append_global_keybindings({
             if tag then
                 tag:view_only()
             end
-            awful.spawn("if ! xdo activate -N Microsoft-edge-beta; then microsoft-edge-beta; fi")
+            awful.spawn.with_shell("if ! xdo activate -N Microsoft-edge-beta; then microsoft-edge-beta; fi")
         end,
 	{ description = "Open Web Browser", group = "App" }
     ),
