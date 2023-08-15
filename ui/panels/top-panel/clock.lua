@@ -46,6 +46,7 @@ return function(s)
         hover_effect = false
 	})
 
+    --- Create the widget
     return widget
 
 end
