@@ -29,6 +29,9 @@ local function autostart_apps()
         --- Set Key Delay
         awful.spawn("xset r rate 200 50")
 
+	--- Set Monitor Configuration
+	awful.spawn("xrandr --output HDMI-1 --mode 1920x1080 --above eDP-1 --output eDP-1 --mode 1920x1080")
+
         --- Polkit Agent (Authenticates things like software manager)
         -- helpers.run.run_once_ps(
         --         "polkit-gnome-authentication-agent-1",
