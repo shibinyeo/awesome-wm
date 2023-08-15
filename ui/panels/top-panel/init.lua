@@ -14,7 +14,7 @@ local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
 -- local helpers = require("helpers")
 local widgets = require("ui.widgets")
--- local wbutton = require("ui.widgets.button")
+local wbutton = require("ui.widgets.button")
 local animation = require("modules.animation")
 
 --- ████████╗ ██████╗ ██████╗     ██████╗  █████╗ ███╗   ██╗███████╗██╗     
@@ -42,7 +42,7 @@ return function(s)
     --- ANIMATED TAG LIST
     --- ~~~~~~~~~~~~~~~~~
 
-    --- Create Taglist Buttons (what happens when clicking on taglist)
+    --- Create Taglist Buttons - what happens when clicking on taglist
     local modkey = "Mod4"
 	local taglist_buttons = gears.table.join(
 		awful.button({}, 1, function(t)
@@ -116,7 +116,7 @@ return function(s)
 		})
 
         --- Define Taglist Widget
-		local widget = widgets.button.elevated.state({
+		local widget = wbutton.elevated.state({
 			normal_bg = beautiful.widget_bg,
 			normal_shape = gears.shape.rounded_bar,
 			child = {
@@ -142,6 +142,38 @@ return function(s)
 
     --- LAYOUT BOX
     --- ~~~~~~~~~~
+
+    local function layoutbox()
+
+        --- Define Layoutbox Buttons - what happens when clicked
+		local layoutbox_buttons = gears.table.join(
+
+			--- Left click
+			awful.button({}, 1, function(c)
+				awful.layout.inc(1)
+			end),
+
+			--- Right click
+			awful.button({}, 3, function(c)
+				awful.layout.inc(-1)
+			end)
+
+		)
+
+        --- Define Layoutbox
+		s.mylayoutbox = awful.widget.layoutbox()
+		s.mylayoutbox:buttons(layoutbox_buttons)
+
+        --- Define Layoutbox Widget
+		local widget = wbutton.elevated.state({
+			child = s.mylayoutbox,
+			normal_bg = beautiful.wibar_bg,
+		})
+
+        --- Create Layoutbox Widget
+		return widget
+
+	end
 
     --- ┏┓┳┓┏┓┏┓┏┳┓┏┓  ┏┓┏┓┳┓┏┓┓ 
     --- ┃ ┣┫┣ ┣┫ ┃ ┣   ┃┃┣┫┃┃┣ ┃ 
@@ -171,7 +203,7 @@ return function(s)
 						-- s.battery,
 						-- s.network,
 						-- notif_panel(),
-						-- layoutbox(),
+						layoutbox(),
 						layout = wibox.layout.fixed.horizontal,
                     }
                 },
