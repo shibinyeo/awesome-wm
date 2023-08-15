@@ -40,7 +40,7 @@ awful.keyboard.append_global_keybindings({
 	function()
 	  awful.spawn(apps.default.terminal)
         end,
-	{ description = "open terminal", group = "App" }
+	{ description = "Open Terminal", group = "App" }
     ),
 
     -- awful.key(
@@ -55,7 +55,7 @@ awful.keyboard.append_global_keybindings({
     awful.key(
         { mod }, "r",
         function () awful.screen.focused().mypromptbox:run() end,
-	{ description = "run prompt", group = "launcher" }
+	{ description = "Run Prompt", group = "launcher" }
     ),
 
     awful.key(
@@ -63,20 +63,20 @@ awful.keyboard.append_global_keybindings({
         function()
             awful.spawn.with_shell(apps.default.terminal .. ' -e ' .. apps.default.file_manager)
         end,
-        { description = "open ranger", group = "App" }
+        { description = "Open Ranger", group = "App" }
     ),
 
     awful.key(
         { mod }, "w",
 	function()
-            local screen = awful.screen.focused()
+            local screen = awful.screen.focus(2)
             local tag = screen.tags[1]
             if tag then
                 tag:view_only()
             end
-            awful.spawn(apps.default.web_browser)
+            awful.spawn("if ! xdo activate -N Microsoft-edge-beta; then microsoft-edge-beta; fi")
         end,
-	{ description = "open web browser", group = "App" }
+	{ description = "Open Web Browser", group = "App" }
     ),
 
     awful.key(
@@ -89,7 +89,7 @@ awful.keyboard.append_global_keybindings({
             end
             awful.spawn("env LD_PRELOAD=/usr/lib/spotify-adblock.so spotify --disable-gpu --no-zygote %U")
         end,
-	{ description = "open spotify", group = "App" }
+	{ description = "Open Spotify", group = "App" }
     ),
 
     awful.key(
@@ -102,7 +102,7 @@ awful.keyboard.append_global_keybindings({
             end
             awful.spawn("telegram-desktop")
         end,
-	{ description = "open telegram", group = "App" }
+	{ description = "Open Telegram", group = "App" }
     ),
 
     awful.key(
@@ -115,7 +115,7 @@ awful.keyboard.append_global_keybindings({
             end
             awful.spawn.with_shell("if ! xdo activate -N whatsapp-nativefier-d40211; then whatsapp-nativefier --disable-gpu; fi")
         end,
-	{ description = "open whatsapp", group = "App" }
+	{ description = "Open Whatsapp", group = "App" }
     ),
 
     awful.key(
@@ -126,9 +126,9 @@ awful.keyboard.append_global_keybindings({
             if tag then
                 tag:view_only()
             end
-            awful.spawn("obsidian")
+            awful.spawn.with_shell("if ! xdo activate -N obsidian; then obsidian; fi")
         end,
-	{ description = "open obsidian", group = "App" }
+	{ description = "Open Obsidian", group = "App" }
     ),
 
     awful.key(
@@ -136,7 +136,7 @@ awful.keyboard.append_global_keybindings({
         function()
             awful.spawn("anki")
         end,
-	{ description = "open anki", group = "App" }
+	{ description = "Open Anki", group = "App" }
     ),
 
     awful.key(
@@ -144,7 +144,7 @@ awful.keyboard.append_global_keybindings({
         function()
             awful.spawn("flameshot gui --clipboard --accept-on-select")
         end,
-	{ description = "take a screenshot", group = "App" }
+	{ description = "Take Screenshot", group = "App" }
     ),
 
     --- AWESOME WM FUNCTIONS
@@ -153,19 +153,19 @@ awful.keyboard.append_global_keybindings({
     awful.key(
         { mod, ctrl }, "r",
 	awesome.restart,
-	{ description = "reload awesome", group = "WM" }
+	{ description = "Reload Awesome", group = "WM" }
     ),
 
     awful.key(
         { mod, shift }, "q",
 	awesome.quit,
-        { description = "quit awesome", group = "WM" }
+        { description = "Quit Awesome", group = "WM" }
     ),
 
     awful.key(
         { mod }, "/",
         hotkeys_popup.show_help,
-        { description = "show help", group = "WM" }
+        { description = "Show Help", group = "WM" }
     ),
 
     -- awful.key(
@@ -179,17 +179,17 @@ awful.keyboard.append_global_keybindings({
     --- CLIENT NAVIGATION
     --- ~~~~~~~~~~~~~~~~~
     
-    awful.key({ mod }, "k",     function() awful.client.focus.bydirection("up")    end, { description = "focus up",    group = "Client" }),
-    awful.key({ mod }, "up",    function() awful.client.focus.bydirection("up")    end, { description = "focus up",    group = "Client" }),
+    awful.key({ mod }, "k",     function() awful.client.focus.bydirection("up")    end, { description = "Focus Up",    group = "Client" }),
+    awful.key({ mod }, "up",    function() awful.client.focus.bydirection("up")    end, { description = "Focus Up",    group = "Client" }),
 
-    awful.key({ mod }, "j",     function() awful.client.focus.bydirection("down")  end, { description = "focus down",  group = "Client" }),
-    awful.key({ mod }, "down",  function() awful.client.focus.bydirection("down")  end, { description = "focus down",  group = "Client" }),
+    awful.key({ mod }, "j",     function() awful.client.focus.bydirection("down")  end, { description = "Focus Down",  group = "Client" }),
+    awful.key({ mod }, "down",  function() awful.client.focus.bydirection("down")  end, { description = "Focus Down",  group = "Client" }),
 
-    awful.key({ mod }, "h",     function() awful.client.focus.bydirection("left")  end, { description = "focus left",  group = "Client" }),
-    awful.key({ mod }, "left",  function() awful.client.focus.bydirection("left")  end, { description = "focus left",  group = "Client" }),
+    awful.key({ mod }, "h",     function() awful.client.focus.bydirection("left")  end, { description = "Focus Left",  group = "Client" }),
+    awful.key({ mod }, "left",  function() awful.client.focus.bydirection("left")  end, { description = "Focus Left",  group = "Client" }),
 
-    awful.key({ mod }, "l",     function() awful.client.focus.bydirection("right") end, { description = "focus right", group = "Client" }),
-    awful.key({ mod }, "right", function() awful.client.focus.bydirection("right") end, { description = "focus right", group = "Client" }),
+    awful.key({ mod }, "l",     function() awful.client.focus.bydirection("right") end, { description = "Focus Right", group = "Client" }),
+    awful.key({ mod }, "right", function() awful.client.focus.bydirection("right") end, { description = "Focus Right", group = "Client" }),
 
     --- SYSTEM SHORTCUTS
     --- ~~~~~~~~~~~~~~~~
@@ -197,7 +197,7 @@ awful.keyboard.append_global_keybindings({
     awful.key(
         { mod }, "XF86AudioRaiseVolume",
         function()
-	    awful.spawn.with_shell("if [ $(pactl info | grep 'Default Sink' | cut -d ' ' -f3) = 'alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__hw_sofhdadsp__sink' ]; then pactl set-default-sink alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__hw_sofhdadsp_3__sink; else pactl set-default-sink alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__hw_sofhdadsp__sink; fi")
+	    awful.spawn.with_shell("if [ $(pactl info | grep 'Default Sink' | cut -d ' ' -f3) = 'alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.3.HiFi__hw_sofhdadsp__sink' ]; then pactl set-default-sink alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.3.HiFi__hw_sofhdadsp_3__sink; else pactl set-default-sink alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.3.HiFi__hw_sofhdadsp__sink; fi")
         end
     ),
 
