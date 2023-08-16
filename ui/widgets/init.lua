@@ -1,7 +1,7 @@
 return {
 	button = require(... .. ".button"),
 	-- container = require(... .. ".container"),
-	-- containmenu = require(... .. ".menu"),
-	-- containplayerctl = require(... .. ".playerctl"),
-	-- containtext = require(... .. ".text"),
+	-- menu = require(... .. ".menu"),
+	-- playerctl = require(... .. ".playerctl"),
+	text = require(... .. ".text"),
 }
