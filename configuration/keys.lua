@@ -197,7 +197,7 @@ awful.keyboard.append_global_keybindings({
     awful.key(
         { mod }, "XF86AudioRaiseVolume",
         function()
-	    awful.spawn.with_shell("if [ $(pactl info | grep 'Default Sink' | cut -d ' ' -f3) = 'alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.3.HiFi__hw_sofhdadsp__sink' ]; then pactl set-default-sink alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.3.HiFi__hw_sofhdadsp_3__sink; else pactl set-default-sink alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.3.HiFi__hw_sofhdadsp__sink; fi")
+	    awful.spawn.with_shell('defaultsink=$(pactl info | grep "Default Sink" | cut -d " " -f3); number=${defaultsink:59-1:1}; if [[ $defaultsink == "alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic."*".HiFi__hw_sofhdadsp_3__sink" ]]; then pactl set-default-sink "alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic."${number}".HiFi__hw_sofhdadsp__sink"; else pactl set-default-sink "alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic."${number}".HiFi__hw_sofhdadsp_3__sink"; fi')
         end
     ),
 
