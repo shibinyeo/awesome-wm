@@ -61,9 +61,11 @@ awful.keyboard.append_global_keybindings({
     awful.key(
         { mod }, "f",
         function()
-            awful.spawn.with_shell(apps.default.terminal .. ' -e ' .. apps.default.file_manager)
+	    --- *command for ranger
+            --awful.spawn.with_shell(apps.default.terminal .. ' -e ' .. apps.default.file_manager)
+	    awful.spawn(apps.default.file_manager)
         end,
-        { description = "Open Ranger", group = "App" }
+        { description = "Open File Manager", group = "App" }
     ),
 
     awful.key(
@@ -92,6 +94,19 @@ awful.keyboard.append_global_keybindings({
 	{ description = "Open Spotify", group = "App" }
     ),
 
+    awful.key(
+        { mod }, "c",
+        function()
+            local screen = awful.screen.focus(1)
+            local tag = screen.tags[6]
+            if tag then
+                tag:view_only()
+            end
+            awful.spawn("gnome-clocks")
+        end,
+	{ description = "Open Timer", group = "App" }
+    ),
+    
     awful.key(
         { mod }, "t",
 	function()
@@ -197,7 +212,8 @@ awful.keyboard.append_global_keybindings({
     awful.key(
         { mod }, "XF86AudioRaiseVolume",
         function()
-	    awful.spawn.with_shell('defaultsink=$(pactl info | grep "Default Sink" | cut -d " " -f3); number=${defaultsink:59-1:1}; if [[ $defaultsink == "alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic."*".HiFi__hw_sofhdadsp_3__sink" ]]; then pactl set-default-sink "alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic."${number}".HiFi__hw_sofhdadsp__sink"; else pactl set-default-sink "alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic."${number}".HiFi__hw_sofhdadsp_3__sink"; fi')
+	    awful.spawn.with_shell('defaultsink=$(pactl info | grep "Default Sink" | cut -d " " -f3); number=${defaultsink:59-1:2}; [[ $number = *"." ]] || number="${number}."; [[ $number = "Hi." ]] && number="" ; if [[ $defaultsink == "alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic."*"HiFi__hw_sofhdadsp_3__sink" ]]; then pactl set-default-sink "alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic."${number}"HiFi__hw_sofhdadsp__sink"; else pactl set-default-sink "alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic."${number}"HiFi__hw_sofhdadsp_3__sink"; fi')
+	    --awful.spawn.with_shell('defaultsink=$(pactl info | grep "Default Sink" | cut -d " " -f3); number=${defaultsink:59-1:2}; [[ $number = *"." ]] && number="${number%.}"; if [[ $defaultsink == "alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic."*".HiFi__hw_sofhdadsp_3__sink" ]]; then pactl set-default-sink "alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic."${number}".HiFi__hw_sofhdadsp__sink"; else pactl set-default-sink "alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic."${number}".HiFi__hw_sofhdadsp_3__sink"; fi')
         end
     ),
 
