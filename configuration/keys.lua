@@ -95,6 +95,19 @@ awful.keyboard.append_global_keybindings({
     ),
 
     awful.key(
+        { mod }, "y",
+        function()
+            local screen = awful.screen.focus(1)
+            local tag = screen.tags[6]
+            if tag then
+                tag:view_only()
+            end
+            awful.spawn("youtube-music")
+        end,
+	{ description = "Open YouTube Music", group = "App" }
+    ),
+
+    awful.key(
         { mod }, "c",
         function()
             local screen = awful.screen.focus(1)
