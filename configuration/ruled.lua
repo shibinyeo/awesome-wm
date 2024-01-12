@@ -159,6 +159,7 @@ ruled.client.connect_signal("request::rules", function()
             class = {
                 "org.gnome.clocks",
     	        "Spotify",
+		"YouTube Music",
             },
         },
         properties = {
