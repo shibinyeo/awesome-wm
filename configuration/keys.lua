@@ -436,6 +436,11 @@ awful.keyboard.append_global_keybindings({
     awful.key({ mod }, "space", function () awful.layout.inc(1) end, { description = "select next layout", group = "Workspace" }),
     -- awful.key({ mod, shift }, "space", function () awful.layout.inc(-1) end, { description = "select previous layout", group = "Workspace" }),
 
+    awful.key({ mod, alt, shift, ctrl }, "Tab",
+      function ()
+	awful.spawn.with_shell('xrandr --output HDMI-1 --mode 1920x1080 --output eDP-1 --off')
+      end, { description = "use HDMI display only", group = "workspace" }), 
+
 })
  
 --- ┳┳┓┏┓┳┳┏┓┏┓  ┳┓┳┳┓┳┓┳┳┓┏┓┏┓
