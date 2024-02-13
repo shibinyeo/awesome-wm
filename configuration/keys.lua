@@ -441,6 +441,23 @@ awful.keyboard.append_global_keybindings({
 	awful.spawn.with_shell('xrandr --output HDMI-1 --mode 1920x1080 --output eDP-1 --off')
       end, { description = "use HDMI display only", group = "workspace" }), 
 
+    --- Shortcuts to move mouse
+    awful.key({ mod, shift, alt, ctrl }, "i", function()
+    	awful.spawn("xdotool mousemove_relative 480 0")
+    end, { description = "mouse right", group = "app" }),
+    
+    awful.key({ mod, shift, alt, ctrl }, "e", function()
+    	awful.spawn("xdotool mousemove_relative -- 0 -360")
+    end, { description = "mouse up", group = "app" }),
+    
+    awful.key({ mod, shift, alt, ctrl }, "n", function()
+    	awful.spawn("xdotool mousemove_relative 0 360")
+    end, { description = "mouse down", group = "app" }),
+    
+    awful.key({ mod, shift, alt, ctrl }, "m", function()
+    	awful.spawn("xdotool mousemove_relative -- -480 0")
+    end, { description = "mouse left", group = "app" }),
+
 })
  
 --- ┳┳┓┏┓┳┳┏┓┏┓  ┳┓┳┳┓┳┓┳┳┓┏┓┏┓
